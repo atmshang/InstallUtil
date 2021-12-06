@@ -1,4 +1,4 @@
-package com.atmshang.install.library.receiver;
+package com.atmshang.library.install.receiver;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -8,7 +8,7 @@ import android.content.pm.LauncherApps;
 import android.content.pm.PackageInstaller;
 import android.os.Process;
 
-import com.atmshang.install.library.utils.InstallUtils;
+import com.atmshang.library.install.utils.InstallUtils;
 
 import java.util.List;
 

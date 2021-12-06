@@ -1,4 +1,4 @@
-package com.atmshang.install.library.utils;
+package com.atmshang.library.install.utils;
 
 import android.app.PendingIntent;
 import android.content.Context;
@@ -6,9 +6,9 @@ import android.content.Intent;
 import android.content.pm.PackageInstaller;
 import android.util.Log;
 
-import com.atmshang.install.library.receiver.InstallReceiver;
-import com.blankj.utilcode.util.CloseUtils;
+import com.atmshang.library.install.receiver.InstallReceiver;
 
+import java.io.Closeable;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -82,9 +82,7 @@ public class InstallUtils {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            CloseUtils.closeIOQuietly(in);
-            CloseUtils.closeIOQuietly(out);
-            CloseUtils.closeIOQuietly(session);
+            closeIOQuietly(in, out, session);
         }
         logInfo("copyInstallFile", "result:" + success);
         return success;
@@ -105,8 +103,20 @@ public class InstallUtils {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            CloseUtils.closeIOQuietly(session);
+            closeIOQuietly(session);
         }
         logInfo("execInstall", "commissioned");
+    }
+
+    public static void closeIOQuietly(final Closeable... closeables) {
+        if (closeables == null) return;
+        for (Closeable closeable : closeables) {
+            if (closeable != null) {
+                try {
+                    closeable.close();
+                } catch (IOException ignored) {
+                }
+            }
+        }
     }
 }
