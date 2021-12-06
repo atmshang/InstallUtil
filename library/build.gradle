@@ -10,17 +10,17 @@ android {
     defaultConfig {
         minSdk 28
         targetSdk 31
-        versionCode 10000
-        versionName "1.00.00"
+        versionCode 10001
+        versionName "1.00.01"
     }
     afterEvaluate {
         publishing {
             publications {
                 release(MavenPublication) {
                     from components.release
-                    groupId = 'com.github.atmshang'
-                    artifactId = 'library.install'
-                    version = '1.00.00'
+                    groupId = 'com.atmshang.library'
+                    artifactId = 'install'
+                    version = '1.00.01'
                 }
             }
         }
